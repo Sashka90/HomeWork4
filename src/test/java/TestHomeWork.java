@@ -67,7 +67,7 @@ public class TestHomeWork {
         driver.findElement(dateOfBirth).sendKeys(DATEBIRTH + Keys.ENTER);
         dropdownMenuClick(countryInput, country);
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("javascript:window.scrollBy(250,350)");
+        js.executeScript("arguments[0].scrollIntoView();", driver.findElement(dateOfBirth));
         dropdownMenuClick(englishLevelInput,englishLevel);
         driver.findElement(relocate).click();
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(cityInput)));
@@ -93,7 +93,7 @@ public class TestHomeWork {
     public void inputAutorizationData(String email, String password) {
         By inputEmail = By.xpath("//input[@type='text' and contains(@placeholder, 'Электронная почта')]");
         By inputPass = By.xpath("//input[@type='password' and contains(@placeholder, 'Введите пароль')]");
-        By enterButton = By.xpath("//*[@class='new-log-reg__form js-login']/descendant::button");
+        By enterButton = By.xpath("//button[contains(text(), 'Войти') and (@type ='submit')]");
         driver.findElement(inputEmail).sendKeys(email);
         driver.findElement(inputPass).sendKeys(password);
         driver.findElement(enterButton).click();
